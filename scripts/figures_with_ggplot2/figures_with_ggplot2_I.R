@@ -18,6 +18,7 @@
 ### genome assembly QC program QUAST
 
 ### First we will read in our table, store it as a variable, and view it
+
 df <- read.delim("./quast_data.tsv", 
            header = T, 
            stringsAsFactors = F, 
@@ -37,7 +38,7 @@ library(ggplot2)
 
 ggplot(df)
 
-## B. Geometric Objects aka geoms
+## B. Geometric objects aka geoms
 
 ### geoms specify what type of graph we are plotting e.g. line, bar, scatter, etc
 
@@ -55,7 +56,7 @@ help.search("geom_", package = "ggplot2")
 ### We do this by placing aes() within the ggplot function
 
 ### For example, plotting Largest Contig vs Total Length without a geom layer
-### gives us an x and y axis, but no data on the graph
+### gives us an x- and y-axis, but no data on the graph
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`))
 
@@ -100,7 +101,6 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`)) +
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
   geom_point(size=3, shape=17, color="blue") +
   geom_line(size=2, linetype="dashed", color="purple")
-
 
 ### Note: the numbers associated with point shapes and line types can be viewed
 ### with the following ggpubr commands:
