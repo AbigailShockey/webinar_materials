@@ -1,7 +1,7 @@
-# Making figures with ggplot2 part IV: Themes and saving plots
+# Making figures with ggplot2 part IV: Themes and legends
 
 ### For our example data, we will be using the same assembly QC table from the 
-### previous section
+### previous section:
 
 df <- read.delim("./quast_data.tsv", 
                  header = T, 
@@ -11,22 +11,23 @@ df <- read.delim("./quast_data.tsv",
 ## A. Built-in themes
 
 ### ggplot2 has a number of built-in themes you can choose from for your figures
-### As you may have noticed, the default has a grey background and white gridlines
+### As you may have noticed, the default has a grey background and white 
+### gridlines.
 
 ### You can use the help function to search for the different types of themes
-### available in ggplot2, or you can using the search bar in the help tab
+### available in ggplot2, or you can using the search bar in the help tab:
 
 help.search("theme_grey", package="ggplot2")
 
 ### We'll use the box plot from the last section to go over some of these 
-### built-in themes
+### built-in themes.
 
-### The classic dark-on-light ggplot2 theme
+### The classic dark-on-light ggplot2 theme:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_bw()
 
-### A theme with only black lines of various widths on white backgrounds
+### A theme with only black lines of various widths on white backgrounds:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_linedraw()
@@ -36,34 +37,35 @@ ggplot(df, aes(x=Species, y=`Total length`)) +
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_light()
 
-### The dark cousin of theme_light(), with similar line sizes but a dark background
+### The dark cousin of theme_light(), with similar line sizes but a dark 
+### background:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_dark()
 
-### A minimalistic theme with no background annotations
+### A minimalist theme with no background annotations:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_minimal()
 
-### A classic-looking theme, with x and y axis lines and no gridlines
+### A classic-looking theme, with x and y axis lines and no gridlines:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_classic()
 
-### A completely empty theme
+### A completely empty theme:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_void()
-
 
 ### You can also install packages with other built-in fonts
 ### For example, one of my favorite themes is Dracula
 
 library(ggDracula)
 
-ggplot(df, aes(x=Species, y=`Total length`)) + 
-  geom_boxplot(outliers=F) + theme_dracula()
+ggplot(df, aes(x=Species, y=`Total length`, fill=Species)) + 
+  geom_boxplot(outliers=F) +
+  theme_dracula()
 
 ### You can change basic elements of these themes using the base_size, base_family,
 ### base_line_size, and base_rect_size parameters
@@ -155,16 +157,4 @@ ggplot(df, aes(x=Species, y=`Total length`)) +
 ### There are many, many other arguments and functions for theme() that can
 ### be combined to customize your graph
 
-
-## C. Saving your plot
-
-### The easiest way to save your plot is using ggave()
-### ggsave() with save the last figure you plotted to a file by default,
-### or you can supply it a variable containing a plot
-
-ggsave("my_plot.png",
-       plot = last_plot(),
-       path = "",
-       width = 5,
-       height = 5,
-       units = "in")
+## C. Legends
