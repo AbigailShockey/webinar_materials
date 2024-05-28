@@ -8,16 +8,16 @@
 ### based on The Grammar of Graphics."
 
 ### The "grammar of graphics" is a system for describing the
-### individual components that make up the figure or graphic we are visualizing
+### individual components that make up the figure or graphic we are visualizing.
 
 ### ggplot2 allows you to build a plot layer by layer.
 ### In this section, we will be reviewing the geom and aes layers.
 ### We will review layers that allow for further customization in later sections.
 
 ### For our example data, we will be using a table from the output of the
-### genome assembly QC program QUAST
+### genome assembly QC program QUAST.
 
-### First we will read in our table, store it as a variable, and view it
+### First we will read in our table, store it as a variable, and view it:
 
 df <- read.delim("./quast_data.tsv", 
            header = T, 
@@ -29,58 +29,58 @@ View(df)
 
 ### ggplot() is the function for creating a new plot using ggplot2.
 ### As a reminder, we can use library() to load the package and ? to view its 
-### documentation in the Help tab
+### documentation in the Help tab:
 
 library(ggplot2)
 ?ggplot2
 
-### Notice that using the ggplot() without a geom or aes results in a blank plot
+### Notice that using the ggplot() without a geom or aes results in a blank plot:
 
 ggplot(df)
 
 ## B. Geometric objects aka geoms
 
-### geoms specify what type of graph we are plotting e.g. line, bar, scatter, etc
+### geoms specify what type of graph we are plotting e.g. line, bar, scatter, etc.
 
 ### You can use the help function to search for the different types of geoms
-### available in ggplot2, or you can using the search bar in the help tab
+### available in ggplot2, or you can using the search bar in the help tab:
 
 help.search("geom_", package = "ggplot2")
 
-## C. Aesthetic mapping aka aes()
+## C. Aesthetic apping aka aes()
 
 ### We use aes() to map variables to visual properties such as position (x, y), 
-### color, shape, and size
+### color, shape, and size.
 
 ### Remember: aes() is a layer we add to our plot with our geom layer
-### We do this by placing aes() within the ggplot function
+### We do this by placing aes() within the ggplot function.
 
 ### For example, plotting Largest Contig vs Total Length without a geom layer
-### gives us an x- and y-axis, but no data on the graph
+### gives us an x- and y-axis, but no data on the graph:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`))
 
-### We gave ggplot() the table and position of the data, but no geom
+### We gave ggplot() the table and position of the data, but no geom.
 
 ### Adding geom_point() to our graph of Largest Contig vs Total Length will 
-### plot a scatter plot of those data
+### plot a scatter plot of those data:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
     geom_point()
 
-### If we preferred to plot those data as a line, we use geom_line()
+### To plot those data as a line, we use geom_line():
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
     geom_line()
 
-### And if we wanted to include dots and lines, we use both geom functions
+### And if we wanted to include dots and lines, we use both geom functions:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
     geom_line() + 
     geom_point()
 
 ### We can change the appearance, or aesthetic, of our plot by adding more
-### parameters to aes()
+### parameters to aes().
 
 ### The properties we can change using aes() include things like:
 ### shape
@@ -89,8 +89,7 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`)) +
 ### fill (inside color)
 ### line type
 
-### If we want to make a uniform change, we make that change outside of aes()
-
+### If we want to make a uniform change, we make that change outside of aes().
 ### For example, to change the color, size and shape of the points in our plot:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
@@ -110,8 +109,7 @@ show_point_shapes()
 show_line_types()
 
 ### If we want to map an aesthetic change to a variable, we make that change 
-### inside of aes()
-
+### inside of aes().
 ### For example, to change the shape and color of the points in our 
 ### scatter plot based on AMR profile:
 
@@ -126,4 +124,4 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`)) +
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
   geom_point(aes(color=AMR, shape=Species))
 
-### We will discuss how to customize these figures further in a later section
+### We will discuss how to customize these figures further in a later section.
