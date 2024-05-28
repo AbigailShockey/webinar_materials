@@ -6,11 +6,13 @@
 ### For our example data, we will be using the same assembly QC table from the 
 ### previous section:
 
+library(ggplot2)
+
 df <- read.delim("./data/quast_data.tsv", 
-                 header = T, 
-                 check.names = F,
-                 stringsAsFactors = F,
-                 sep = "\t")
+                 header=T, 
+                 check.names=F,
+                 stringsAsFactors=F,
+                 sep="\t")
 
 ## A. Built-in themes
 
@@ -156,9 +158,75 @@ ggplot(df, aes(x=Species, y=`Total length`)) +
         axis.text.x=element_text(size=12),
         axis.title.y=element_text(hjust=1),
         axis.text.y=element_text(angle=45),
-        axis.ticks = element_blank())
+        axis.ticks=element_blank())
 
 ### There are many, many other arguments and functions for theme() that can
 ### be combined to customize your graph
 
 ## C. Legends
+
+### Legends are included by default when a figure is plotted using ggplot.
+### For example, the scatter plot below includes a legend on the right,
+### and each point is colored as coral, green, blue, or purple:
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point()
+
+### We can change the position of the legend using the theme() function.
+### Options for legend.position include "none", "left", "right" (default), 
+### "bottom", "top", "inside":
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.position="top")
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.position="none")
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.position="inside")
+
+### Legend position can also be a numeric vector that include an x and y 
+### coordinate c(x,y), where x and y are values from 0-1:
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.position=c(1,1))
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.position=c(0.5,0.5))
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.position=c(0,0))
+
+### The element_text() function can be used with theme() to change the
+### legends text:
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.text=element_text(color="darkblue",angle=45),
+        legend.title=element_text(face="bold", size="8"))
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.text=element_blank(),
+        legend.title=element_blank())
+
+### Remember: Searching the help tab for a function like element_text() can show
+### us its arguments
+
+?element_text()
+
+### The element_rect() function can be used with theme() to change the legend's
+### color, fill, etc, just like the plot's background above:
+
+ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  theme(legend.background=element_rect(color="purple",
+                                         fill="lightblue",
+                                         linewidth=1,
+                                         linetype=3))
