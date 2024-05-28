@@ -1,5 +1,7 @@
 # Making figures with ggplot2 part I: ggplot2 basics
 
+# By Abigail Shockey
+
 ## A. What is ggplot2?
 
 ### https://ggplot2.tidyverse.org/
