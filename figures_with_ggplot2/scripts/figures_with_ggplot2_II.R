@@ -1,23 +1,23 @@
 # Making figures with ggplot2 part II: More geoms and different types of graphs
 
-### In this section we will go over more geoms and learn how to plot different 
-### types of graphs using ggplot2.
+### In this section we will go over more geoms and continue learning how to plot 
+### different types of graphs using ggplot2.
 
 ### For our example data, we will be using the same assembly QC table from the 
 ### previous section:
 
-df <- read.delim("./quast_data.tsv", 
+df <- read.delim("./data/quast_data.tsv", 
                  header = T, 
-                 stringsAsFactors = F, 
-                 check.names = F)
-
+                 check.names = F,
+                 stringsAsFactors = F,
+                 sep = "\t")
 ## A. Histograms
 
 ### To plot a histogram, we use the geom geom_histogram().
 ### We will start by plotting a histogram of N50:
 
 ggplot(df, aes(x=N50)) + 
-      geom_histogram()
+  geom_histogram()
 
 ### Notice that R prints the message:
 ### "`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
@@ -26,19 +26,19 @@ ggplot(df, aes(x=N50)) +
 ### We can change the amount of bins using the bin argument:
 
 ggplot(df, aes(x=N50)) + 
-      geom_histogram(bins = 10)
+  geom_histogram(bins = 10)
 
 ### We can change the color of our histogram using what we learned about aes()
 ### in the previous section:
 
 ggplot(df, aes(x=N50)) + 
-      geom_histogram(bins=10, color="black", fill="lightgreen")
+  geom_histogram(bins=10, color="black", fill="lightgreen")
 
 ### We can color our histogram by a specific variable using aes() and color or fill 
 ### For example, coloring our N50 histogram by Species.
 
 ggplot(df, aes(x=N50, fill=Species)) +
-      geom_histogram(bins=10)
+  geom_histogram(bins=10)
 
 ### We can change the position of the histogram's bars using the argument position
 ### Values for the argument position are “identity”, “stack”, and “dodge”:
@@ -48,7 +48,7 @@ ggplot(df, aes(x=N50, fill=Species)) +
 
 ### ggplot also has the ability to add a line at the mean or median of our 
 ### histogram with geom_vline():
-  
+
 ggplot(df, aes(x=`Largest contig`)) +
   geom_histogram(bins=10) +
   geom_vline(aes(xintercept=median(`Largest contig`)), linetype="dashed", size=1)
