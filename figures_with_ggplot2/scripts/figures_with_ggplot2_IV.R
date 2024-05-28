@@ -1,12 +1,16 @@
 # Making figures with ggplot2 part IV: Themes and legends
 
+### In this section, we will go over even more ways to customize you figure,
+### as well as its legend, using ggplot2's theme() function
+
 ### For our example data, we will be using the same assembly QC table from the 
 ### previous section:
 
-df <- read.delim("./quast_data.tsv", 
+df <- read.delim("./data/quast_data.tsv", 
                  header = T, 
-                 stringsAsFactors = F, 
-                 check.names = F)
+                 check.names = F,
+                 stringsAsFactors = F,
+                 sep = "\t")
 
 ## A. Built-in themes
 
@@ -111,15 +115,15 @@ element_rect()
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) +
   theme(panel.background=element_rect(fill="white",
-                                        colour="purple",
-                                        linewidth=1,
-                                        linetype="solid"),
+                                      colour="purple",
+                                      linewidth=1,
+                                      linetype="solid"),
         panel.grid.major=element_line(linewidth=0.9,
-                                        linetype="dashed",
-                                        colour="blue"),
+                                      linetype="dashed",
+                                      colour="blue"),
         panel.grid.minor=element_line(linewidth=0.7,
-                                        linetype="dashed",
-                                        colour="blue")) 
+                                      linetype="dashed",
+                                      colour="blue")) 
 
 ### Alternatively, to remove these elements, we can use element_blank()
 
