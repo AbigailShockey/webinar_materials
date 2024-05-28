@@ -1,16 +1,16 @@
-# Making figures with ggplot2 part III: Axes and titles
+# Making figures with ggplot2 part III: Axes and labels
 
-### We've discussed a few of the different ways to customize your figures using
-### ggplot2. In this section, we will review even more ways to customize your 
-### figures, including themes, colors, axes, legends, and more
+### In this section, we will review how to customize the axes and labels of your
+### figures using ggplot2.
 
 ### For our example data, we will be using the same assembly QC table from the 
 ### previous section
 
-df <- read.delim("./quast_data.tsv", 
+df <- read.delim("./data/quast_data.tsv", 
                  header = T, 
-                 stringsAsFactors = F, 
-                 check.names = F)
+                 check.names = F,
+                 stringsAsFactors = F,
+                 sep = "\t")
 
 ## A. Axes and titles
 
