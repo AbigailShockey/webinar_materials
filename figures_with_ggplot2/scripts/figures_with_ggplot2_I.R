@@ -11,7 +11,8 @@
 ### individual components that make up the figure or graphic we are visualizing.
 
 ### ggplot2 allows you to build a plot layer by layer.
-### In this section, we will be reviewing the geom and aes layers.
+
+### In this section, we will go over the geom and aes layers.
 ### We will review layers that allow for further customization in later sections.
 
 ### For our example data, we will be using a table from the output of the
@@ -19,11 +20,11 @@
 
 ### First we will read in our table, store it as a variable, and view it:
 
-df <- read.delim("./quast_data.tsv", 
-           header = T, 
-           stringsAsFactors = F, 
-           check.names = F, 
-           sep = "\t")
+df <- read.delim("./data/quast_data.tsv", 
+                 header = T, 
+                 check.names = F,
+                 stringsAsFactors = F,
+                 sep = "\t")
 
 View(df)
 
@@ -66,18 +67,18 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`))
 ### plot a scatter plot of those data:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
-    geom_point()
+  geom_point()
 
 ### To plot those data as a line, we use geom_line():
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
-    geom_line()
+  geom_line()
 
 ### And if we wanted to include dots and lines, we use both geom functions:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
-    geom_line() + 
-    geom_point()
+  geom_line() + 
+  geom_point()
 
 ### We can change the appearance, or aesthetic, of our plot by adding more
 ### parameters to aes().
@@ -93,7 +94,7 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`)) +
 ### For example, to change the color, size and shape of the points in our plot:
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
-    geom_point(size=3, shape=17, color="blue")
+  geom_point(size=3, shape=17, color="blue")
 
 ### We can do the same for our line plot and change its color and linetype:
 
