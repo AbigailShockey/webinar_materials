@@ -7,10 +7,10 @@
 ### previous section:
 
 df <- read.delim("./data/quast_data.tsv", 
-                 header = T, 
-                 check.names = F,
-                 stringsAsFactors = F,
-                 sep = "\t")
+                 header=T, 
+                 check.names=F,
+                 stringsAsFactors=F,
+                 sep="\t")
 ## A. Histograms
 
 ### To plot a histogram, we use the geom geom_histogram().
@@ -20,13 +20,13 @@ ggplot(df, aes(x=N50)) +
   geom_histogram()
 
 ### Notice that R prints the message:
-### "`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+### "`stat_bin()` using `bins=30`. Pick better value with `binwidth`."
 
 ### Additionally, our histogram is spread thin.
 ### We can change the amount of bins using the bin argument:
 
 ggplot(df, aes(x=N50)) + 
-  geom_histogram(bins = 10)
+  geom_histogram(bins=10)
 
 ### We can change the color of our histogram using what we learned about aes()
 ### in the previous section:
