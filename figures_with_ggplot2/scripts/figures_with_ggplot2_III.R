@@ -17,6 +17,8 @@ df <- read.delim("./data/quast_data.tsv",
 ### You may have noticed that ggplot2 labels the x and y axis using their
 ### respective column names. Additionally, the plot has no title
 
+library(ggplot2)
+
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F)
 
@@ -52,7 +54,12 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`)) +
   xlim(0,1120000) +
   ylim(0,12400000)
 
-### To change the scale of an x, we can use scale_x and scale_y functions, which
+ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
+  geom_line() + 
+  xlim(-1000000,1120000) +
+  ylim(0,20000000)
+
+### To change the scale of an axis, we can use the scale_x and scale_y functions, which
 ### there are many to choose from
 
 help.search("scale_x", package = "ggplot2")
@@ -60,7 +67,7 @@ help.search("scale_x", package = "ggplot2")
 ### The functions for discrete variables include the word "discrete" and the 
 ### functions for  continuous variables include the word "continuous"
 
-### The limits, breaks, labels, and names of each axis can be set with those arguments
+### The limits, breaks, labels, and names of each axis can be set with those parameters
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
   geom_line() +
@@ -114,14 +121,14 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`)) +
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
   geom_line() +
-  scale_x_continuous(trans="log10") +
-  scale_y_continuous(trans="log10")
+  scale_x_continuous(trans="log2") +
+  scale_y_continuous(trans="log2")
 
 ### As a reminder, you can view the other axis scale functions using the help function
 
 help.search("scale_x", package = "ggplot2")
 
-### Scaling discrete axes is slightly different, but uses the same arguments
+### Scaling discrete axes is slightly different, but uses the same parameters
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) 
