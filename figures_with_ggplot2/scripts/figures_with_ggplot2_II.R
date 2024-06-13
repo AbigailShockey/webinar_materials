@@ -16,6 +16,8 @@ df <- read.delim("./data/quast_data.tsv",
 ### To plot a histogram, we use the geom geom_histogram().
 ### We will start by plotting a histogram of N50:
 
+library(ggplot2)
+
 ggplot(df, aes(x=N50)) + 
   geom_histogram()
 
@@ -23,7 +25,7 @@ ggplot(df, aes(x=N50)) +
 ### "`stat_bin()` using `bins=30`. Pick better value with `binwidth`."
 
 ### Additionally, our histogram is spread thin.
-### We can change the amount of bins using the bin argument:
+### We can change the amount of bins using the bin parameter:
 
 ggplot(df, aes(x=N50)) + 
   geom_histogram(bins=10)
@@ -40,11 +42,11 @@ ggplot(df, aes(x=N50)) +
 ggplot(df, aes(x=N50, fill=Species)) +
   geom_histogram(bins=10)
 
-### We can change the position of the histogram's bars using the argument position
-### Values for the argument position are “identity”, “stack”, and “dodge”:
+### We can change the position of the histogram's bars using the parameter position
+### Values for the parameter position are “identity”, “stack”, and “dodge”:
 
 ggplot(df, aes(x=N50, fill=Species)) +
-  geom_histogram(bins=10, position="identity")
+  geom_histogram(bins=10, position="dodge")
 
 ### ggplot also has the ability to add a line at the mean or median of our 
 ### histogram with geom_vline():
@@ -102,7 +104,7 @@ ggplot(df, aes(x=Species, y=`Total length`)) +
 ### Those options include outlier.color, outlier.shape, outlier.size, etc:
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
-  geom_boxplot(outlier.color="blue", outlier.shape=15, outlier.size=3)
+  geom_boxplot(outlier.color="blue", outlier.shape=15, outlier.size=3, alpha = .5)
 
 ?geom_boxplot
 
