@@ -1,12 +1,10 @@
 # Making figures with ggplot2 part IV: Themes and legends
 
-### In this section, we will go over even more ways to customize you figure,
-### as well as its legend, using ggplot2's theme() function
+### In this section, we will go over even more ways to customize you figures,
+### as well as their legends, using ggplot2's theme() function.
 
 ### For our example data, we will be using the same assembly QC table from the 
 ### previous section:
-
-library(ggplot2)
 
 df <- read.delim("./data/quast_data.tsv", 
                  header=T, 
@@ -29,6 +27,8 @@ help.search("theme_grey", package="ggplot2")
 ### built-in themes.
 
 ### The classic dark-on-light ggplot2 theme:
+
+library(ggplot2)
 
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_bw()
@@ -64,7 +64,7 @@ ggplot(df, aes(x=Species, y=`Total length`)) +
 ggplot(df, aes(x=Species, y=`Total length`)) + 
   geom_boxplot(outliers=F) + theme_void()
 
-### You can also install packages with other built-in fonts
+### You can also install packages with other built-in themes
 ### For example, one of my favorite themes is Dracula
 
 library(ggDracula)
@@ -160,7 +160,7 @@ ggplot(df, aes(x=Species, y=`Total length`)) +
         axis.text.y=element_text(angle=45),
         axis.ticks=element_blank())
 
-### There are many, many other arguments and functions for theme() that can
+### There are many, many other parameters and functions for theme() that can
 ### be combined to customize your graph
 
 ## C. Legends
@@ -217,7 +217,7 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) +
         legend.title=element_blank())
 
 ### Remember: Searching the help tab for a function like element_text() can show
-### us its arguments
+### us its parameters
 
 ?element_text()
 
@@ -227,6 +227,6 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) +
 ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
   geom_point() +
   theme(legend.background=element_rect(color="purple",
-                                         fill="lightblue",
-                                         linewidth=1,
-                                         linetype=3))
+                                       fill="lightblue",
+                                       linewidth=1,
+                                       linetype=3))
