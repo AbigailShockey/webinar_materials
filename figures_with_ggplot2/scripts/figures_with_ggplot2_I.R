@@ -10,6 +10,8 @@
 ### The "grammar of graphics" is a system for describing the
 ### individual components that make up the figure or graphic we are visualizing.
 
+### https://link.springer.com/book/10.1007/0-387-28695-0
+
 ### ggplot2 allows you to build a plot layer by layer.
 
 ### In this section, we will go over the geom and aes layers.
@@ -48,7 +50,7 @@ ggplot(df)
 
 help.search("geom_", package = "ggplot2")
 
-## C. Aesthetic apping aka aes()
+## C. Aesthetic mapping aka aes()
 
 ### We use aes() to map variables to visual properties such as position (x, y), 
 ### color, shape, and size.
@@ -113,8 +115,6 @@ show_line_types()
 ### inside of aes().
 ### For example, to change the shape and color of the points in our 
 ### scatter plot based on AMR profile:
-
-View(df)
 
 ggplot(df, aes(x=`Largest contig`, y=`Total length`)) + 
   geom_point(aes(shape=AMR))
