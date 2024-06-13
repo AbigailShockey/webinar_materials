@@ -1,10 +1,10 @@
 # Making figures with ggplot2 part V: Colors and saving your plots
 
 ### In this section, we will review how to customize the colors of your
-### figures using ggplot2.
+### figures and save figures to a file using ggplot2.
 
 ### For our example data, we will be using the same assembly QC table from the 
-### previous section
+### previous section:
 
 df <- read.delim("./data/quast_data.tsv", 
                  header=T, 
@@ -19,23 +19,26 @@ df <- read.delim("./data/quast_data.tsv",
 
 ### Plotting with a single color is done outside aes():
 
+library(ggplot2)
+
 ggplot(df, aes(x=N50)) + 
   geom_histogram(bins=10, color="black", fill="lightgreen")
 
-### If no color is specified within the geom, ggplot2 will use black by default.
+### If no color is specified within the geom function, ggplot2 will use black 
+### or grey by default.
 
-### Coloring our plot by variables in our data set is done within aes():
+### Coloring our plot by a variable in our data set is done within aes():
 
 ggplot(df, aes(x=N50, fill=Species)) +
   geom_histogram(bins=10)
 
-### If no color palette is given within aes() when coloring a plot by variables
+### If no color palette is given within aes() when coloring a plot by a variable
 ### in our data set, ggplot2 uses its built-in color palette by default.
 
 ## B. Hue, chroma, and value
 
 ### Hue, chroma, and value are part of the Munsell color system, which describes
-### the properties of colors.
+### the properties of color.
 
 ### https://munsell.com/color-blog/munsell-book-of-color-1929-hue-value-chroma/
 
@@ -57,7 +60,7 @@ ggplot(df, aes(x=Species, y=`Total length`, fill=Species)) +
   scale_fill_hue(h=c(120,270))
 
 ggplot(df, aes(x=Species, y=`Total length`, color=Species)) + 
-  geom_boxplot(color="black", outliers=F) +
+  geom_boxplot(outliers=F) +
   scale_color_hue(h=c(120,270))
 
 ### Chroma is changed with the c parameter (maximum value varies depending on 
@@ -139,7 +142,7 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=`N50`)) +
 ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=`N50`)) + 
   geom_point() +
   scale_color_gradient2(low="#6e0067", high="#3ff0a1", mid="grey",
-      midpoint=mean(df$N50))
+                        midpoint=mean(df$N50))
 
 ## D. Color palette modules
 
@@ -169,13 +172,28 @@ ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) +
 
 ## E. Saving your plot
 
-### The easiest way to save your plot is using ggave()
-### ggsave() with save the last figure you plotted to a file by default,
+### The easiest way to save your plot is using ggsave()
+### ggsave() will save the last figure you plotted to a file by default,
 ### or you can supply it a variable containing a plot
 
+?ggsave
+
 ggsave("my_plot.png",
-       plot=last_plot(),
-       path="",
+       path="./figures/",
        width=5,
        height=5,
-       units="in")
+       units="in",
+       dpi=300)
+
+my_plot <- ggplot(df, aes(x=`Largest contig`, y=`Total length`, color=AMR)) + 
+  geom_point() +
+  scale_color_viridis(option="plasma", discrete=T)
+my_plot
+
+ggsave("my_plot.png",
+       plot=my_plot,
+       path="./figures/",
+       width=5,
+       height=5,
+       units="in",
+       dpi=300)
